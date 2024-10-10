@@ -1,0 +1,9 @@
+#root {
+    width: 1600px;
+    padding: 0 20px 0 20px ;
+}
+
+li {
+    margin-bottom: 10px;
+    list-style-type: none;
+}
