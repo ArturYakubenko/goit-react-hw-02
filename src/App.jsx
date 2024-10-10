@@ -6,7 +6,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 
-import Feedback from './components/feedback';
+import Feedback from './components/Feedback';
 import Options from './components/Options';
 import Notification from './components/Notification';
 

@@ -1,5 +1,5 @@
-
-
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line react/prop-types
 const Feedback = ({ feedback, totalFeedback }) => {
     return (
         <ul>
