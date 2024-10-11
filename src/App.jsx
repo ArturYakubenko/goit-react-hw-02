@@ -9,6 +9,7 @@ import './App.css'
 import Feedback from './components/Feedback';
 import Options from './components/Options';
 import Notification from './components/Notification';
+import Description from './components/Description';
 
 function App() {
 
@@ -27,20 +28,31 @@ function App() {
 
   const totalFeedback = feedback.good + feedback.bad + feedback.neutral
 
-  const reset = () => { setFeedback({ good: 0, neutral: 0, bad: 0 }), localStorage.removeItem('save-feedback')}
+  const reset = () => {
+  setFeedback({ good: 0, neutral: 0, bad: 0 });
+};
+
+useEffect(() => {
+  if (feedback.good === 0 && feedback.neutral === 0 && feedback.bad === 0) {
+    localStorage.removeItem('save-feedback');
+  } else {
+    localStorage.setItem("save-feedback", JSON.stringify(feedback));
+  }
+}, [feedback]);
   
   useEffect(() => {
     window.localStorage.setItem("save-feedback", JSON.stringify(feedback))
   }, [feedback])
 
+  const persent = Math.round(((feedback.good + feedback.neutral)/ totalFeedback) * 100)
+
   return (
     <>
-      <h1>Sip Happens Café</h1>
-      <p>Please leave your feedback about our service by selecting one of the options below.</p>
+      <Description/>
       <Options updateFeedback={updateFeedback}
                  totalFeedback={totalFeedback}
                                  reset={reset} />
-      { totalFeedback > 0 ? (<Feedback feedback={feedback} totalFeedback={totalFeedback} />) :  ( <Notification message="No feedback given yet" /> )}
+      { totalFeedback > 0 ? (<Feedback feedback={feedback} totalFeedback={totalFeedback} persent={persent} />) :  ( <Notification message="No feedback given yet" /> )}
     </>
   )
 }
