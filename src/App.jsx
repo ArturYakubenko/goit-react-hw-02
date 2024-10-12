@@ -40,11 +40,7 @@ useEffect(() => {
   }
 }, [feedback]);
   
-  useEffect(() => {
-    window.localStorage.setItem("save-feedback", JSON.stringify(feedback))
-  }, [feedback])
-
-  const persent = Math.round(((feedback.good + feedback.neutral)/ totalFeedback) * 100)
+  const persent = Math.round((feedback.good/ totalFeedback) * 100)
 
   return (
     <>
